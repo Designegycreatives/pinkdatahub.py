@@ -22,7 +22,6 @@ url = f"https://spangle-basin-670.notion.site/Form-Submission-1c57c0768500436ab8
 
 headers = {
     'Authorization': f"Bearer {secret}",
-    'database_id': f"{database}",
     'Content-Type': 'application/json',
     'Notion-Version': '2022-04-12'
 
@@ -41,7 +40,37 @@ with st.form(key='enquiry_form'):
         #file = open('secret.json')
 
         #data = json.load(file)
-        data = ({"Business_Name":username, "Phone_Number":contact, "Email_Address":email, "Business_Requirements":choice})
+        data = {
+            "parent": { "database_id": f"{database}" },
+            "Properties" : {
+                "Business_Name": [
+                    {
+                        "text": {
+                            "content": "username"
+                        }
+                    }
+                ],
+                "Phone_Number": [
+                    {
+                        "Phone": {
+                            "content": "contact"
+                        }
+                    }
+                ],
+                "Email_Address": [
+                    {
+                        "Email": {
+                            "content": "email"
+                        }
+                    }
+                ],
+                "Business_Requirements": [
+                    {
+                        "Multi-select": "choice"
+                    }
+                ]
+            }
 
+        }
 
         response = requests.post(url, headers=headers, json=data)
