@@ -38,7 +38,7 @@ submit = form.form_submit_button('Submit')
 if submit:
     st.success("Submitted Successfully")
     form = {"Name": username, "Phone": contact, "Email":email, "Business":choice}
-    forms = form.loads(form)
+    forms = json.loads(form)
     res = requests.patch(url, headers=headers, json=forms)
     data = res.json()
     st.write(res.status_code)
