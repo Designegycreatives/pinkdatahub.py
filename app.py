@@ -18,7 +18,7 @@ col2.image(image)
 
 secret = "secret_s74bWlSgDpHkb14TmLr46LX7bGO7NLt5yYvh3NbcGjP"
 database = "1c57c0768500436ab8986aeadfc84736"
-url = f"https://api.notion.com/v1/databases/{database}"
+url = f"https://api.notion.com/v1/databases/1c57c0768500436ab8986aeadfc84736"
 
 headers = {
     "Authorization": f"Bearer {secret}",
@@ -27,20 +27,19 @@ headers = {
     "Content-Type": "application/json"
 
 }
-
-with st.form(key='enquiry_form'):
-    username = st.text_input("Business Name")
-    contact = st.text_input("Business Phone Number")
-    email = st.text_input("Business Email Address")
-    choice = st.multiselect("Business Requirements",["Notion Templates", "Web Applications", "API",
+form = st.form("forms", clear_on_submit=False)
+username = form.text_input("Business Name")
+contact = form.text_input("Business Phone Number")
+email = form.text_input("Business Email Address")
+choice = form.multiselect("Business Requirements",["Notion Templates", "Web Applications", "API",
                                                      "Strategic Business Growth","Business Automations"])
+submit = form.form_submit_button('Submit')
+if submit:
+    st.success("Submitted Successfully")
+    res = requests.request("PATCH",url,headers=headers)
+    data = res.json()
+    st.write(res.status_code)
+    st.json(data)
 
-    submit = st.form_submit_button('Submit')
-    if submit:
-        st.success("Submitted Successfully")
-        #file = open('secret.json')
-
-        #data = json.load(file)
-        data = {"properties": "string"}
-        response = requests.patch(url, headers=headers, json=data)
-        st.write(response.text)
+    #response = requests.patch(url, headers=headers, json=data)
+    #st.write(response.text)
