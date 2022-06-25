@@ -17,8 +17,8 @@ col1.write("Please fill out the following correctly, \n \n We will get in "
 col2.image(image)
 
 secret = "secret_s74bWlSgDpHkb14TmLr46LX7bGO7NLt5yYvh3NbcGjP"
-database = "ce5f6dabbeb847dcb957552e018f071b?v=9c5f96831d7e4464aa25d64cacc5ece3" 
-url = f"https://api.notion.com/v1/databases/ce5f6dabbeb847dcb957552e018f071b?v=9c5f96831d7e4464aa25d64cacc5ece3"
+database = "9c5f96831d7e4464aa25d64cacc5ece3" 
+url = f"https://api.notion.com/v1/databases/9c5f96831d7e4464aa25d64cacc5ece3"
 
 headers = {
     "Authorization": f"Bearer {secret}",
