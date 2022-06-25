@@ -41,7 +41,7 @@ if submit:
     res = requests.patch(url, headers=headers, json=form)
     data = res.json()
     st.write(res.status_code)
-    st.json(res)
+    st.json(data)
 
     #  response = requests.patch(url, headers=headers, json=form)
     #st.write(response.text)
