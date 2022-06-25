@@ -16,14 +16,15 @@ col1.write("Please fill out the following correctly, \n \n We will get in "
            "We are excited to work with you and help your buiness grow!!!")
 col2.image(image)
 
-secret = "secret_J7BGrdtw6ujyteeZKQEDD24Dl0TO8Lx6tglACwZ0w7J"
+secret = "secret_s74bWlSgDpHkb14TmLr46LX7bGO7NLt5yYvh3NbcGjP"
 database = "1c57c0768500436ab8986aeadfc84736"
-url = f"https://spangle-basin-670.notion.site/Form-Submission-1c57c0768500436ab8986aeadfc84736"
+url = f"https://api.notion.com/v1/databases/{database}"
 
 headers = {
-    'Authorization': f"Bearer {secret}",
-    'Content-Type': 'application/json',
-    'Notion-Version': '2022-04-12'
+    "Authorization": f"Bearer {secret}",
+    "Accept": "application/json",
+    "Notion-Version": "2022-06-28",
+    "Content-Type": "application/json"
 
 }
 
@@ -40,37 +41,6 @@ with st.form(key='enquiry_form'):
         #file = open('secret.json')
 
         #data = json.load(file)
-        data = {
-            "parent": { "database_id": f"{database}" },
-            "Properties" : {
-                "Business_Name": [
-                    {
-                        "text": {
-                            "content": "username"
-                        }
-                    }
-                ],
-                "Phone_Number": [
-                    {
-                        "Phone": {
-                            "content": "contact"
-                        }
-                    }
-                ],
-                "Email_Address": [
-                    {
-                        "Email": {
-                            "content": "email"
-                        }
-                    }
-                ],
-                "Business_Requirements": [
-                    {
-                        "Multi-select": "choice"
-                    }
-                ]
-            }
-
-        }
-
-        response = requests.post(url, headers=headers, json=data)
+        data = {"properties": "string"}
+        response = requests.patch(url, headers=headers, json=data)
+        st.write(response.text)
