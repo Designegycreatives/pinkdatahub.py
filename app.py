@@ -18,7 +18,7 @@ col2.image(image)
 
 #ce5f6dabbeb847dcb957552e018f071b?v=9c5f96831d7e4464aa25d64cacc5ece3
 secret = "secret_s74bWlSgDpHkb14TmLr46LX7bGO7NLt5yYvh3NbcGjP"
-database = "ce5f6dabbeb847dcb957552e018f071b" 
+database = "ce5f6dabbeb847dcb957552e018f071b"
 url = f"https://api.notion.com/v1/databases/ce5f6dabbeb847dcb957552e018f071b"
 
 headers = {
@@ -37,10 +37,12 @@ choice = form.multiselect("Business Requirements",["Notion Templates", "Web Appl
 submit = form.form_submit_button('Submit')
 if submit:
     st.success("Submitted Successfully")
-    res = requests.request("PATCH",url,headers=headers)
+    form = {"Name": username, "Phone": contact, "Email":email, "Business":choice}
+    forms = form.loads(form)
+    res = requests.patch(url, headers=headers, json=forms)
     data = res.json()
     st.write(res.status_code)
-    st.json(data)
+    st.json(res)
 
-    #response = requests.patch(url, headers=headers, json=data)
+    #  response = requests.patch(url, headers=headers, json=form)
     #st.write(response.text)
