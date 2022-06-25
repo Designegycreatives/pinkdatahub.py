@@ -5,7 +5,7 @@ import json
 import requests
 import urllib3
 
-image = Image.open('data-scienc- icon.png')
+image = Image.open('image.png')
 col1, col2= st.columns(2)
 
 
