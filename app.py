@@ -21,13 +21,7 @@ secret = "secret_s74bWlSgDpHkb14TmLr46LX7bGO7NLt5yYvh3NbcGjP"
 database = "ce5f6dabbeb847dcb957552e018f071b"
 url = f"https://api.notion.com/v1/databases/ce5f6dabbeb847dcb957552e018f071b"
 
-headers = {
-    "Authorization": f"Bearer {secret}",
-    "Accept": "application/json",
-    "Notion-Version": "2022-06-28",
-    "Content-Type": "application/json"
 
-}
 form = st.form("forms", clear_on_submit=False)
 username = form.text_input("Business Name")
 contact = form.text_input("Business Phone Number")
@@ -38,6 +32,14 @@ submit = form.form_submit_button('Submit')
 if submit:
     st.success("Submitted Successfully")
     form1 = {"Name": username, "Phone": contact, "Email":email, "Business":choice}
+    
+    
+    headers = {
+      "Authorization": f"Bearer {secret}",
+      "Accept": "application/json",
+      "Notion-Version": "2022-06-28",
+      "Content-Type": "application/json"
+    }
     res = requests.patch(url, headers=headers, json=form1)
     data = res.json()
     st.write(res.status_code)
