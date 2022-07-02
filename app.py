@@ -40,7 +40,7 @@ if submit:
       "Notion-Version": "2022-06-28",
       "Content-Type": "application/json"
     }
-    res = requests.patch(url, headers=headers, json.dumps=form1)
+    res = requests.patch(url, headers=headers, json.dumps==form1)
     data = res.json()
     st.write(res.status_code)
     st.json(data)
