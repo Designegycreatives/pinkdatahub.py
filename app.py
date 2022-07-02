@@ -37,8 +37,7 @@ choice = form.multiselect("Business Requirements",["Notion Templates", "Web Appl
 submit = form.form_submit_button('Submit')
 if submit:
     st.success("Submitted Successfully")
-    form = {"Name": username, "Phone": contact, "Email":email, "Business":choice}
-    form=form.json()
+    form = {"Name": "username", "Phone": "contact", "Email":"email", "Business":"choice"}
     res = requests.patch(url, headers=headers, json=form)
     data = res.json()
     st.write(res.status_code)
