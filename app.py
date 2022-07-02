@@ -39,11 +39,11 @@ if submit:
       "Notion-Version": "2022-06-28",
       "Content-Type": "application/json"
     }
-    res = requests.patch(url, headers=headers, json=form1)
+    res = requests.patch(url, headers=headers)
     data = res.json()
-    form_app = data['forms1']
+    form_app = data[form1]
     st.write(res.status_code)
-    st.json(data)
+    st.json(form_app)
 
     #  response = requests.patch(url, headers=headers, json=form)
     #st.write(response.text)
