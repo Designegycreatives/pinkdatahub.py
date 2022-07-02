@@ -32,6 +32,7 @@ submit = form.form_submit_button('Submit')
 if submit:
     st.success("Submitted Successfully")
     form1 = {"Name": username, "Phone": contact, "Email":email, "Business":choice}
+    form_1 = json.dumps(form1, indent=4)
     
     headers = {
       "Authorization": f"Bearer {secret}",
@@ -39,9 +40,8 @@ if submit:
       "Notion-Version": "2022-06-28",
       "Content-Type": "application/json"
     }
-    res = requests.patch(url, headers=headers)
+    res = requests.patch(url, headers=headers, json=form_1)
     data = res.json()
-    form_app = data[form1]
     st.write(res.status_code)
     st.json(form_app)
 
