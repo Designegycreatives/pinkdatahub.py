@@ -33,7 +33,6 @@ if submit:
     st.success("Submitted Successfully")
     form1 = {"Name": username, "Phone": contact, "Email":email, "Business":choice}
     
-    
     headers = {
       "Authorization": f"Bearer {secret}",
       "Accept": "application/json",
@@ -42,6 +41,7 @@ if submit:
     }
     res = requests.patch(url, headers=headers, json=form1)
     data = res.json()
+    form_app = data['forms1']
     st.write(res.status_code)
     st.json(data)
 
